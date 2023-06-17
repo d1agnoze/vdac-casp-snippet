@@ -8,9 +8,12 @@
 ###A simple snippet for classic asp written for HUCE IT training program in VN
 ![example](images/example.gif)
 ## Features
-`inc | inv` include a file or virtual
-`os | ios` start a scripting block
-`ros | iros` close a scripting block and open another one, useful when you want to return a template in the middle of conditional statement
+`inc | inv` to include a file or virtual
+<br />
+`os | ios` to start a scripting block
+<br />
+`ros | iros` to close a scripting block and open another one, useful when you want to return a template in the middle of conditional statement
+<br />
 ```diff
 + genCon: create a connection to your database
 + wres: while loop when result object not EOF
