@@ -2,10 +2,16 @@
   "name": "vdac-casp-snippet",
   "displayName": "CASP snippet",
   "description": "classic asp snippet for upcoming test",
+  "icon": "images/logo.png",
+  "publisher": "vdac",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.79.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d1agnoze/vdac-casp-snippet"
+},
   "categories": [
     "Snippets"
   ],
