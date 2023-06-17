@@ -58,7 +58,7 @@
   "genCon": {
     "prefix": "genCon",
     "body": [
-      "Dim connDB\nset connDB = Server.CreateObject(\"ADODB.Connection\")\nDim strConnection\nstrConnection =\"Provider=SQLOLEDB.1;Data Source=${1:FIRELINKSHRINE\\SQLEXPRESS};Database=${2:DB};User Id=${3:sa};Password=${4:123}\"\nconnDB.ConnectionString = strConnection\nconnDB.Open"
+      "Dim connDB\nset connDB = Server.CreateObject(\"ADODB.Connection\")\nDim strConnection\nstrConnection =\"Provider=SQLOLEDB.1;Data Source=${1:YourPC\\SQLEXPRESS};Database=${2:DB};User Id=${3:sa};Password=${4:123}\"\nconnDB.ConnectionString = strConnection\nconnDB.Open"
     ]
   }
 }
