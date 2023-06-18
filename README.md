@@ -15,6 +15,7 @@
 `ros | iros` to close a scripting block and open another one, useful when you want to return a template in the middle of conditional statement
 <br />
 ```diff
++ qr: create SQL statement
 + genCon: create a connection to your database
 + wres: while loop when result object not EOF
 + ifres : if condition when result object not EOF
