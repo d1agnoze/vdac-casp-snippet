@@ -59,6 +59,26 @@
     "prefix": "genCon",
     "body": [
       "Dim connDB\nset connDB = Server.CreateObject(\"ADODB.Connection\")\nDim strConnection\nstrConnection =\"Provider=SQLOLEDB.1;Data Source=${1:YourPC\\SQLEXPRESS};Database=${2:DB};User Id=${3:sa};Password=${4:123}\"\nconnDB.ConnectionString = strConnection\nconnDB.Open"
-    ]
+    ],
+    "description": "generate a connection to the database"
+  },
+  "Result": {
+    "prefix": "rs",
+    "body": "Result(\"${1:yourColumn}\")",
+    "description": "Result(\"your column\")"
+  },
+  "Pagination": {
+    "prefix": "pag",
+    "body": [
+      "<%\nDim limit, totalRows, pageNumber, strSQL, page\nfunction checkPage(cond, ret)\n\tif cond=true then\n\tResponse.write ret\n\relse\n\tResponse.write \"\"\n\rend if\n\rend function\nlimit = 5\nstrSQL = \"select count(*) as count from ${1:your Table}\"\nSet CountResult = connDB.execute(strSQL)\ntotalRows = CLng(CountResult(\"count\"))\nSet CountResult = Nothing\npageNumber = totalRows/limit\npage = Request.QueryString(\"page\")\nif (trim(page) = \"\") or (isnull(page)) then\n\tpage = 1\n\rend if\npage = CInt(page)\noffset = (Clng(page) * Clng(limit)) - Clng(limit)\n\nSet cmdPrep = Server.CreateObject(\"ADODB.Command\")\ncmdPrep.ActiveConnection = connDB\ncmdPrep.CommandType = 1\ncmdPrep.Prepared = True\ncmdPrep.commandText = \"${2:your query} ${3:order by} offset \"& CLng(offset) &\" rows fetch next \"& CLng(limit) &\" row only\"\nIf Cint(pageNumber)<1 Then\n\tcmdPrep.commandText = \"${2:your query} ${3:order by}\"\n\rEnd if\nset Result = cmdPrep.execute\n%>"
+    ],
+    "description": "pagination code block"
+  },
+  "BootstrapPagination": {
+    "prefix": "bspag",
+    "body": [
+      "<nav aria-label=\"Page Navigation\">\n\t<ul class=\"pagination \">\n\t\t<% if (pageNumber>1) then \n\t\t\tfor i= 1 to pageNumber\n\t\t%>\n\t\t\t\t<li class=\"page-item <%=checkPage(Clng(i)=Clng(page),\"active\")%>\"><a class=\"page-link\" href=\"/ManagmentFeatures/statistics.asp?page=<%=i%>\"><%=i%></a></li>\n\t\t\t<%\n\t\t\tnext\n\t\t\tend if\n\t\t%>\n\t</ul>\n</nav>"
+    ],
+    "description": "bootstrap pagination"
   }
 }
